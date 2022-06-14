@@ -1,6 +1,8 @@
 package api
 
 import (
+	"fmt"
+	jwt "github.com/appleboy/gin-jwt/v2"
 	"trainee/serializer"
 	"trainee/service"
 
@@ -46,4 +48,27 @@ func UserLogout(c *gin.Context) {
 		Code: 0,
 		Msg:  "登出成功",
 	})
+}
+
+// 用户登录2
+func UserLogin2(c *gin.Context) {
+	var service service.UserLoginService
+	if err := c.ShouldBind(&service); err == nil {
+		res := service.Login(c)
+		c.JSON(200, res)
+	} else {
+		c.JSON(200, ErrorResponse(err))
+	}
+}
+
+func HelloHandler(c *gin.Context) {
+	claims := jwt.ExtractClaims(c)
+	fmt.Println(claims)
+	//user, _ := c.Get(identityKey)
+	//c.JSON(200, gin.H{
+	//	"userID":   claims[identityKey],
+	//	"userName": user.(*User).UserName,
+	//	"text":     "Hello World.",
+	//})
+	c.JSON(200, "11111")
 }

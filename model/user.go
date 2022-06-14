@@ -15,6 +15,12 @@ type User struct {
 	Avatar         string `gorm:"size:1000"`
 }
 
+// User payload数据
+type UserPayload struct {
+	UserId       uint
+	UserName string
+}
+
 const (
 	// PassWordCost 密码加密难度
 	PassWordCost = 12

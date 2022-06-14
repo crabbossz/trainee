@@ -10,8 +10,8 @@ import (
 
 // UserLoginService 管理用户登录的服务
 type UserLoginService struct {
-	UserName string `form:"user_name" json:"user_name" binding:"required,min=5,max=30"`
-	Password string `form:"password" json:"password" binding:"required,min=8,max=40"`
+	UserName string `form:"user_name" json:"user_name"`
+	Password string `form:"password" json:"password"`
 }
 
 // setSession 设置session
@@ -39,3 +39,5 @@ func (service *UserLoginService) Login(c *gin.Context) serializer.Response {
 
 	return serializer.BuildUserResponse(user)
 }
+
+// 登录方法
